@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '9.0'
+
+target 'MGSwiftShaker_Example' do
+  pod 'MGSwiftShaker', :path => '../'
+
+  target 'MGSwiftShaker_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

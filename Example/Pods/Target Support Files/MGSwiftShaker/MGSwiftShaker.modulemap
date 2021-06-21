@@ -1,0 +1,6 @@
+framework module MGSwiftShaker {
+  umbrella header "MGSwiftShaker-umbrella.h"
+
+  export *
+  module * { export * }
+}
