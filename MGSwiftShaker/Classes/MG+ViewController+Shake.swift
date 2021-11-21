@@ -22,7 +22,7 @@ extension UIViewController {
         
         let vc = MGShakeViewController()
         let nav = UINavigationController(rootViewController: vc)
-        UIViewController.topViewController()?.present(nav, animated: true, completion: nil)
+        UIViewController.mg_shaker_top_view_controller()?.present(nav, animated: true, completion: nil)
     }
     
     open override func motionCancelled(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
@@ -32,21 +32,21 @@ extension UIViewController {
 
 extension UIViewController {
     // Get top view controller
-    class func topViewController() -> UIViewController? {
+    class func mg_shaker_top_view_controller() -> UIViewController? {
         let keyWindow = UIApplication.shared.windows.first
         let rootVC = keyWindow?.rootViewController
-        var resultVC = self.topViewController(vc: rootVC)
+        var resultVC = self.mg_shaker_top_view_controller(vc: rootVC)
         while resultVC?.presentedViewController != nil {
-            resultVC = self.topViewController(vc: resultVC?.presentedViewController)
+            resultVC = self.mg_shaker_top_view_controller(vc: resultVC?.presentedViewController)
         }
         return resultVC
     }
     
-    fileprivate class func topViewController(vc: UIViewController?) -> UIViewController? {
+    fileprivate class func mg_shaker_top_view_controller(vc: UIViewController?) -> UIViewController? {
         if let ctrl = vc as? UINavigationController {
-            return self.topViewController(vc: ctrl.topViewController)
+            return self.mg_shaker_top_view_controller(vc: ctrl.topViewController)
         } else if let ctrl = vc as? UITabBarController {
-            return self.topViewController(vc: ctrl.selectedViewController)
+            return self.mg_shaker_top_view_controller(vc: ctrl.selectedViewController)
         } else {
             return vc
         }

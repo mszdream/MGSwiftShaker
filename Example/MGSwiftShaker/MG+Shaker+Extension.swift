@@ -13,22 +13,29 @@ extension MGShaker: MGShakeDataSource {
         let data1 = MGShakeDataModel()
         data1.title = "Router"
         data1.desc = "Page Router"
+        data1.selectedClosure = { model in
+            print(model.desc ?? "")
+        }
+        
         let data2 = MGShakeDataModel()
         data2.title = "Log"
         data2.desc = "Show running log"
+        data2.selectedClosure = { model in
+            print(model.desc ?? "")
+        }
+        
         let data3 = MGShakeDataModel()
         data3.title = "Other"
         data3.desc = "Show other content"
+        data3.selectedClosure = { model in
+            print(model.desc ?? "")
+        }
         
         let section = MGShakeModel()
         section.title = "Test"
         section.dataArray = [data1, data2, data3]
         
         return [section]
-    }
-    
-    public func mgShake(selected data: MGShakeDataModelProtocol) {
-        
     }
     
     public func bindingData(cell: MGShakeCell, data: MGShakeDataModelProtocol) {
@@ -45,6 +52,8 @@ extension MGShaker {
         var title: String?
         
         var desc: String?
+        
+        var selectedClosure: ((MGShakeDataModelProtocol)->())?
     }
     
     class MGShakeModel: MGShakeModelProtocol {

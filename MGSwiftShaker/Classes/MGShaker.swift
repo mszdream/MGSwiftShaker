@@ -17,20 +17,27 @@ public protocol MGShakeDataModelProtocol {
     var identify: String? { get }
     var title: String? { get }
     var desc: String? { get }
+    var selectedClosure: ((MGShakeDataModelProtocol)->())? { get set }
 }
 
 
 // MARK: - cell
 open class MGShakeCell: UITableViewCell {
     static var identifier: String { return "UITableViewCell" }
+    
+    public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+    }
+    
+    required public init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
 // MARK: - data source protocol
 public protocol MGShakeDataSource: NSObjectProtocol {
     /// Get data source
     func mgShake() -> Array<MGShakeModelProtocol>
-    /// It is triggered when you click cell
-    func mgShake(selected data: MGShakeDataModelProtocol)
     /// Get cell type
     func mgShake() -> MGShakeCell.Type
     /// Binding cell and data model
@@ -40,10 +47,6 @@ public protocol MGShakeDataSource: NSObjectProtocol {
 public extension MGShakeDataSource {
     func mgShake() -> Array<MGShakeModelProtocol> {
         return []
-    }
-
-    func mgShake(selected data: MGShakeDataModelProtocol) {
-        print("list item has be clicked!")
     }
 
     func mgShake() -> MGShakeCell.Type {

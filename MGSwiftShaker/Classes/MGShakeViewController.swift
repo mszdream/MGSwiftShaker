@@ -20,6 +20,7 @@ class MGShakeViewController: UIViewController {
         
         if let cellType: MGShakeCell.Type = MGShaker.shared?.dataSource?.mgShake() {
             mainTableView.dataSource = self
+            mainTableView.delegate = self
             mainTableView.estimatedRowHeight = 64
             mainTableView.frame = self.view.bounds
             mainTableView.register(cellType, forCellReuseIdentifier: cellType.identifier)
@@ -64,7 +65,7 @@ extension MGShakeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sectionData = dataSource[indexPath.section]
         if let model = sectionData.dataArray?[indexPath.row] {
-            MGShaker.shared?.dataSource?.mgShake(selected: model)
+            model.selectedClosure?(model)
         }
     }
 }

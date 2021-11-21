@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MGSwiftShaker'
-  s.version          = '1.0.0'
+  s.version          = '1.1.0'
   s.summary          = 'A simple shake-one-shake.'
   s.swift_versions   = '4.0'
 
@@ -32,6 +32,10 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '9.0'
 
   s.source_files = 'MGSwiftShaker/Classes/**/*'
+  s.xcconfig = {
+    #"OTHER_SWIFT_FLAGS" => "-D #{s.name.tr!("//", "_")}"
+    "OTHER_SWIFT_FLAGS" => "-D #{s.name}"
+  }
   
   # s.resource_bundles = {
   #   'MGSwiftShaker' => ['MGSwiftShaker/Assets/*.png']
