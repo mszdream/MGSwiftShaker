@@ -5,6 +5,8 @@
 //  Created by hello on 2021/6/18.
 //
 
+#if MGSwiftShaker
+
 import UIKit
 import MGSwiftShaker
 
@@ -63,3 +65,5 @@ extension MGShaker {
     }
     
 }
+
+#endif
