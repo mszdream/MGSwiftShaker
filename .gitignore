@@ -19,6 +19,9 @@ DerivedData
 *.hmap
 *.ipa
 
+Example/MGSwiftShaker.xcworkspace/
+Example/Podfile.lock
+
 # Bundler
 .bundle
 
@@ -35,3 +38,4 @@ Carthage/Build
 # `pod install` in .travis.yml
 #
 # Pods/
+Example/Pods/
